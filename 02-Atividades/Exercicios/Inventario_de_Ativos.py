@@ -7,6 +7,8 @@ ATIVOS = [
             "so": "Cisco IOS", "status": "inativo", "ultimo_acesso": "2024-11-15"},
             {"nome": "SRV-DB01", "tipo": "servidor", "ip": "192.168.1.20",
             "so": "Debian 12", "status": "ativo", "ultimo_acesso": "2025-02-19"},
+            {"nome": "4nt1v3r50", "tipo": "servidor", "ip": "192.168.1.20",
+            "so": "Abiotic", "status": "ativo", "ultimo_acesso": "2026-04-05"},
         ]
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 '''Inventário de Ativos:
@@ -43,32 +45,36 @@ def _fim_script():
     print("//////////////////////")
     print()
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-def _inativos(ativos: list):
-    inativos = []
+# def _inativos(ativos: list):
+#     inativos = []
 
-    ultimos_dias = _extrator_dias(ativos)
-    # print(ultimos_dias)    
+#     ultimos_dias = _extrator_dias(ativos)
+#     # print(ultimos_dias)    
 
-    for nome in ativos:
-        for i in ultimos_dias:
-            if int(i) > 15:
-                inativos.append(ativos)
-    return inativos
+#     for nome in ativos:
+#         for i in ultimos_dias:
+#             if int(i) > 15:
+#                 inativos.append(ativos)
+#     return inativos
 
 def _extrator_dias(ativos):
-    dia = [ativo["ultimo_acesso"][-2:] for ativo in ativos]
+    data = [ativo["ultimo_acesso"] for ativo in ativos]
 
     # for i in dia:
     #     dia_extraido = int(i)
     #     print("tipo:", type(dia_extraido), "->", dia_extraido)
-    return dia
-
-def main():
-    INATIVOS = _inativos(ATIVOS)
-    
-    for i in ATIVOS:
-        print(i["nome"])
+    return data
 
 from datetime import date
+from datetime import datetime
+DATAS = _extrator_dias(ATIVOS)
 
-main()
+for data in DATAS:
+    print(data, type(data))
+    data_formatada = datetime.strptime(data, "%Y-%m-%d").date()
+    print(data_formatada, type(data_formatada))
+
+    print(datetime.today().date(), type(datetime.today().date()))
+
+    delta = data_formatada - datetime.today().date()
+    print(delta)
