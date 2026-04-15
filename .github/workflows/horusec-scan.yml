@@ -1,0 +1,20 @@
+name: Horusec Security Scan
+
+on:
+  push:
+    branches: [main, master, develop] # Branches que ativarão o scan
+  pull_request:
+    branches: [main, master] # Ao abrir PRs para branch principal
+
+jobs:
+  horusec-scan:
+    runs-on: ubuntu-latest
+    name: Horusec Scan
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Run Horusec Scan
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/main/deployments/scripts/install.sh | bash -s latest
+          horusec start -p="./" -e="true"
