@@ -121,7 +121,6 @@ def main():
     
     _formatador_saida(frase, vogais, consoantes)
 
-    
     _fim_script()
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
