@@ -24,9 +24,6 @@
         # Digite outra senha:
 '''
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-from time import sleep
-
 def _apresentacao():
     print()
     print("+---------------------+")
