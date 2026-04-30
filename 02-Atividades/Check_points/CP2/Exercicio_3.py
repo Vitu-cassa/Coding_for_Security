@@ -37,7 +37,7 @@ def _fim_script():
     print("//////////////////////")
     print()
 
-def _autoteste(contador: int):
+def _autoteste():
     print()
 
 def _verificador_duplicado(lista: list, novo_ip):
