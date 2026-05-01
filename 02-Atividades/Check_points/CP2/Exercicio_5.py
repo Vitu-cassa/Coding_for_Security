@@ -63,7 +63,9 @@ def _contador_palavras(texto: str):
 def main():
 
     _apresentacao()
+
     print("Autoteste")
+
     TEXTO = "o gato viu o rato e o rato viu o gato e o gato correu"
     print(TEXTO)
     texto_minusculo = TEXTO.lower()
