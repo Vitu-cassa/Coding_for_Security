@@ -78,7 +78,7 @@ def _detector_ips_maliciosos(set_acessos: set, set_blacklist: set):
 
 def _contador_ips_unicos(maliciosos: list, seguros: list, nao_cadastrados: list):
     '''
-    conta e retorna quantos IPS unicos foram detectados.
+    conta quantos IPS unicos foram detectados.
     '''
     ips_unicos = len(maliciosos) + len(seguros) + len(nao_cadastrados)
 
