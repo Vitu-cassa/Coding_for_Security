@@ -88,6 +88,7 @@ def _mostrador_de_ip(lista: list):
     '''
     for ip in lista:
         print("   - {}".format(ip))
+
 def _relatorio():
     '''
     Gera um relatorio dos IPS baseado nas listas analisadas.
@@ -105,8 +106,6 @@ def _relatorio():
     _mostrador_de_ip(ips_naocadastrados)
 
     print("\nTotal de IPs únicos: 10".format(qntd_unicos))
-    
-
 
 def main():
 
@@ -123,4 +122,3 @@ BLACKLIST = {"185.220.101.1", "45.33.32.156", "91.240.118.172",
             "23.94.5.100", "104.244.72.115"}
 
 main()
-
