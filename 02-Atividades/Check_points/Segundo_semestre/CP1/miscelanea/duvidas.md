@@ -21,13 +21,15 @@ ex. Quando atualizei tudo que teinha como "teste" no banco para "True", eu pesqu
 print("CVE {0[cve_id]} está: {1}".format(vuln, "Corrigida" if vuln.get("corrigida") else "Pendente"))
 ```
 ---
-## Exercicio 3:
-1. Ao adicionar os eventos do exercicio e ralizar uma busca para conferir se foram inseridos, ocorreu um erro. Estava realizando um `find({})` para listar tudo, mas aparentemente, o programa estava considerando todas as coleções.
-como delcarar uma coleção especifica?
->**resposta:**
->Como reaproveitei o codigo, atribui para `eventsoDb` o nome de `["vulnerabilidades"`, misturando as coleções.
->Houve ainda uma sugestão de filtro para utilizar dentro do `find({})`. Não a utilizei depos de corrigir o nome da coleção, mas achei uma excelente feature 
->'''python
->filtro = {"ip": {"$exists": True}, "tipo": {"$exists": True}} # Sugerido pela IA para evitar buscas globais incompativeis
->'''
+## Exercício 3:
+1. Ao adicionar os eventos do exercício e realizar uma busca para conferir se foram inseridos, ocorreu um erro. Estava realizando um `find({})` para listar tudo, mas aparentemente, o programa estava considerando todas as coleções.
+Como declarar uma coleção específica?
 
+> **Resposta:**
+> Como reaproveitei o código, atribuí para `eventsDb` o nome de `"vulnerabilidades"`, misturando as coleções.
+> 
+> Houve ainda uma sugestão de filtro para utilizar dentro do `find({})`. Não a utilizei depois de corrigir o nome da coleção, mas achei uma excelente feature:
+> 
+> ```python
+> filtro = {"ip": {"\(exists": True}, "tipo": {"\)exists": True}} # Sugerido pela IA para evitar buscas globais incompatíveis
+> ```
