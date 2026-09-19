@@ -1,0 +1,123 @@
+{
+    // 🔹 Editor
+    "editor.fontSize": 15,
+    "editor.fontFamily": "JetBrains Mono, Consolas, monospace",
+    "editor.lineHeight": 22,
+    "editor.renderLineHighlight": "all",
+    "editor.rulers": [
+        79
+    ],
+    "editor.minimap.enabled": true,
+    "editor.renderWhitespace": "all",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.cursorBlinking": "phase",
+    "editor.formatOnSave": true,
+    // 🔹 Tema
+    "workbench.colorTheme": "Dracula Theme",
+    "workbench.startupEditor": "newUntitledFile",
+    // 🔹 Semantic Highlighting
+    "editor.semanticHighlighting.enabled": true,
+    "editor.semanticTokenColorCustomizations": {
+        "enabled": true,
+        "rules": {
+            "keyword": "#C586C0",
+            "operator": "#E0E0E0",
+            "function": "#4EC9B0",
+            "variable": "#9CDCFE",
+            "variable.readonly": "#9CDCFE",
+            "variable.defaultLibrary": "#9CDCFE",
+            "variable.static": "#9CDCFE",
+            "parameter": {
+                "foreground": "#9CDCFE",
+                "fontStyle": "italic"
+            },
+            "string": "#F2921B",
+            "number": "#C5E598",
+            "comment": {
+                "foreground": "#6A9955",
+                "fontStyle": "italic"
+            }
+        }
+    },
+    // 🔹 TextMate rules (fallback)
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": [
+                    "keyword.control",
+                    "keyword.declaration"
+                ],
+                "settings": {
+                    "foreground": "#C586C0"
+                }
+            },
+            {
+                "scope": [
+                    "keyword.operator",
+                    "punctuation",
+                    "punctuation.separator",
+                    "punctuation.accessor",
+                    "punctuation.definition.expression"
+                ],
+                "settings": {
+                    "foreground": "#E0E0E0"
+                }
+            },
+            {
+                "scope": "entity.name.function",
+                "settings": {
+                    "foreground": "#4EC9B0"
+                }
+            },
+            {
+                "scope": "variable.parameter",
+                "settings": {
+                    "foreground": "#9CDCFE",
+                    "fontStyle": "italic"
+                }
+            },
+            {
+                "scope": "variable",
+                "settings": {
+                    "foreground": "#9CDCFE"
+                }
+            },
+            {
+                "scope": "string",
+                "settings": {
+                    "foreground": "#F2921B"
+                }
+            },
+            {
+                "scope": "constant.numeric",
+                "settings": {
+                    "foreground": "#C5E598"
+                }
+            },
+            {
+                "scope": "comment",
+                "settings": {
+                    "foreground": "#6A9955",
+                    "fontStyle": "italic"
+                }
+            }
+        ]
+    },
+    // 🔹 Python: linting e formatação
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.formatting.provider": "black",
+    "python.terminal.activateEnvironment": true,
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.autoSearchPaths": true,
+    "python.analysis.useLibraryCodeForTypes": true,
+    // 🔹 Jupyter Notebook (se usar)
+    "jupyter.askForKernelRestart": false,
+    "jupyter.runStartupCommands": [
+        "%matplotlib inline"
+    ],
+    "jupyter.textOutputLimit": 1000,
+    // 🔹 Terminal integrado
+    "terminal.integrated.fontSize": 14,
+    "editor.guides.indentation": true
+}
