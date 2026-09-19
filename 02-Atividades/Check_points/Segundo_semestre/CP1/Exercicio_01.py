@@ -43,8 +43,6 @@ except Error as e:
     print(f"Erro de conexão: {e}")
 
 finally:
-
-
     cursor = conexao.cursor()
 
     # Cria tabela
