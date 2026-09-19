@@ -10,7 +10,7 @@ Mas o "feetch all", e porque a consulta não deu certo sem o "dictionary=True" n
 ---
 
 ## Exercicio 2:
-1. Como trabalhar com datas na hora de inserir e, principalmente, consultar um dado no mongo?
+1. Como trabalhar com datas na hora de inserir e, principalmente, consultar um dado no mongo (ou qqr outro banco)?
 
 2. Como realizar comandos direto no mongoDB sem o Dbeaver?
 

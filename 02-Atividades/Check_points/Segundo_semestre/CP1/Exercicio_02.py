@@ -102,3 +102,10 @@ try:
         print("ID: {0[cve_id]} tipo: {0[tipo]}".format(vuln))
 except Exception as e:
     print("Vulnerabilidade não removida: {}".format(e))
+
+# Conta quantas CVEs estão como "Não corrigida"....
+print("Contando CVEs não corrigidas...")
+try:
+    print("{} CVEs ainda em aberto.".format(vulnerabilidades.count_documents({"corrigida": False})))
+except Exception as e:
+    print("Falha na contagem: {}".format(e))
