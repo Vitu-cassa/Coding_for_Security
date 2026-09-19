@@ -10,5 +10,5 @@
 3. Gostaria de conseguir escrever melhor os códigos com uma linguagem mais pythonica.
 Se puder comentar, novamente, como condições em linha unica funcionam, pensando em semantica e estrutura, eu agradeço.
 ex. Quando atualizei tudo que teinha como "teste" no banco para "True", eu pesquisei como ficaria a saida usando o .format() com uma condicional:
-`print("CVE {0[cve_id]} está: {1}".format(vuln, "Corrigida" if vuln.get("corrigida") else "Pendente"))`
+```print("CVE {0[cve_id]} está: {1}".format(vuln, "Corrigida" if vuln.get("corrigida") else "Pendente"))```
 
