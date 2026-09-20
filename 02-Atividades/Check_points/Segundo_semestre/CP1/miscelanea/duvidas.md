@@ -54,3 +54,15 @@ principalmente na hora de realizar o pipeline.
 =´(
 
 ---
+## Exercicio 6:
+1. Realizei uma fonçao for para geração de eventos, passando alguns parâmetros para IA, de forma resumida:
+> Enviei uma lista de IPs genericos para utilização
+> Solicitei que ela estudasse um loop com um preenchimento basico de uma lista.
+> Adicionei uma condição para verificar se o contador do loop era par ou impar, para inserir um valor diferente para o indice `tipo` da coleção que pretendia usar.
+> Baseado nessa decisõa, solicitei que a IA fizesse uma condição par averificar se o contador é primo e, caso seja, colocar em `tipo` o valor de `SUSPEITO`.
+> Solicitei a inserção de uma simulação de data e hora aleatorios.
+> Transformei tudo em uma função chamada `geraEventos()`,
+> IA sugeriu passar um parametro para a função, podendo controlar a quantidade de eventos gerados.
+> A função retorna uma lista, com os eventos preenchidos. Utilizo esse retorno para a variavel `eventos`, para preenchimento da coleção.
+> Espero, sinceramente, que funcione bem...
+>
