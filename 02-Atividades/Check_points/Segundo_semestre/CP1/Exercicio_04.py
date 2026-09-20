@@ -48,22 +48,51 @@ finally:
                     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                     )
         """)
+
     except Error as e:
         print("Tabela não criada: {}".format(e))
-        if 'conexao' in locals() and conexao.is_connected():
-            conexao.close()
 
     # Insere os usuários da atividade
     print("Inserindo usuários da lista...")
-
+    cursor = conexao.cursor()
     try:
         cursor.executemany(
         "INSERT INTO users (nome, email) \
-         VALUES (%s, %s,)", usuarios
+         VALUES (%s, %s)", usuarios
          )
         conexao.commit()
-        if 'conexao' in locals() and conexao.is_connected():
-            conexao.close()
     except Error as e:
         print("Usuários não cadastrados: {}".format(e))
 
+    # Comparando Queries
+    # Query segura
+    print("Testando query parametrizada...")
+    try:
+        print("Favor não utilizar {} como parametro de pesquisa!".format(entrada))
+        pesquisa = input("Digite a pesquisa: ")
+        cursor = conexao.cursor(dictionary=True)
+        cursor.execute(
+        "SELECT * FROM users WHERE nome = %s", (pesquisa,)
+        )
+        for row in cursor.fetchall():
+            print(f"[{row['nome']}] {row['email']} ")
+        conexao.commit()
+
+    except Exception as e:
+        print("Erro na consulta: {}".format(e))
+
+    # Query insegura
+    print("Testando query não parametrizada...")
+    try:
+        print("Favor não utilizar {} como parametro de pesquisa!".format(entrada))
+        pesquisa = input("Digite a pesquisa: ")
+        cursor = conexao.cursor(dictionary=True)
+        cursor.execute(f"SELECT * FROM users WHERE nome = '{pesquisa}'")
+        for row in cursor.fetchall():
+            print(f"[{row['nome']}] {row['email']} ")
+        conexao.commit()
+    except Exception as e:
+        print("Erro na consulta: {}".format(e))
+
+    if 'conexao' in locals() and conexao.is_connected():
+        conexao.close()
