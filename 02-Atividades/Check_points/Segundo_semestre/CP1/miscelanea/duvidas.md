@@ -66,4 +66,8 @@ principalmente na hora de realizar o pipeline.
 > A função retorna uma lista, com os eventos preenchidos. Utilizo esse retorno para a variavel `eventos`, para preenchimento da coleção.
 > Espero, sinceramente, que funcione bem...
 >
-2. 
+2. Não ficou tão claro se a aplicação pegou a consulta por index ou não. Considerando verificar alguma forma de fazer um relatório para verificar, de alguma forma. Mas ficará para o futuro. Porém, caso eu tenha realizado a consulta se ser por index, favor, informar a maneira correta.
+3. Por conta do exercicio 2, achei interessante realizar a limpeza de todas as coleções do exercicio. A funcção de limpeza foi adicionada mas não testei, porque no meio do caminho, achei interessante ter uma "sugeira" durante o exercicio. Testarei mais tarde.
+---
+## Exercicio 7:
+1. 
