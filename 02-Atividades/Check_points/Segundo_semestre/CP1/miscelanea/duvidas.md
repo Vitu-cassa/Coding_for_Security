@@ -20,6 +20,7 @@ ex. Quando atualizei tudo que teinha como "teste" no banco para "True", eu pesqu
 ```
 print("CVE {0[cve_id]} está: {1}".format(vuln, "Corrigida" if vuln.get("corrigida") else "Pendente"))
 ```
+4. Pode ser interessante realizar o fechamento da conexão após todas as queries.
 ---
 ## Exercício 3:
 1. Ao adicionar os eventos do exercício e realizar uma busca para conferir se foram inseridos, ocorreu um erro. Estava realizando um `find({})` para listar tudo, mas aparentemente, o programa estava considerando todas as coleções.
@@ -38,3 +39,13 @@ principalmente na hora de realizar o pipeline.
 ---
 ## Exercicio 4:
 1. A tabela é criada, porém, inserir, pelo python, os usuarios da lista, está retornando um erro de sintaxe, mesmo que esteja semelhante ao `Exercicio_01.py`.
+> **Resposta:**
+> Tinha uma vírgula a mais no último `%s`
+>
+```python
+> cursor.executemany("INSERT INTO users (nome, email) VALUES (%s, %s",usuarios)
+```
+>
+2. A conexão estava sendo fechada em todas as chamadas, parece mais inteligente fechar a conexão apóes todas as querys, ao invés de iniciar uma nova.
+---
+
