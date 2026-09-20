@@ -108,10 +108,8 @@ finally:
 
     if 'conexao' in locals() and conexao.is_connected():
         conexao.close()
-
     print("")
     print("!"* 70)
     print("Favor, verificar o arquivo de duvidas... =(")
     print("Rollback não ocorre, agora a Alice ta devendo mais de R$ 2.000,00")
     print("!"* 70)
-    
