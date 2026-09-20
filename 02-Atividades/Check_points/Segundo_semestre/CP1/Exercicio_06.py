@@ -1,4 +1,3 @@
-
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 '''Exercício 6 — Índice e desempenho:
         Crie uma coleção com 1000 eventos gerados em laço, crie um índice no
@@ -16,8 +15,7 @@
 '''
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 from pymongo import MongoClient
-from datetime import datetime, timezone
-from zoneinfo import ZoneInfo
+from datetime import datetime
 from datetime import datetime, timedelta
 import random
 
@@ -109,6 +107,7 @@ eventos = geraEventos(1000)
 print("Inserindo novos eventos...")
 try:
     eventos_db.insert_many(eventos)
+    print("{} novos eventos catalogados.".format(eventos_db.count_documents({})))
 except Exception as e:
     print("Falha na inserção: {}".format(e))
 
@@ -118,3 +117,25 @@ try:
     eventos_db.create_index("ip")
 except Exception as e:
     print("Indexação falhou: {}".format(e))
+
+# Verifica eventos, utilizando pipeline para contagem de eventos
+print("Verificando quantidade de eventos do ip 185.220.101.1...")
+try:
+    pipeline = [
+        {"$match": {"ip": "185.220.101.1"}},
+        {"$group": {"_id": "$ip", "total":{"$sum": 1}}},
+        ]
+    for evento in eventos_db.aggregate(pipeline):
+        print("eventos do IP {0[_id]}: {0[total]}".format(evento))
+except Exception as e:
+    print("Falha na contagem de eventos: {}".format(e))
+
+'''
+Uma consulta por index é mais rapida, pois direciona a busca para uma chave
+especifica. Utilizazndo o exemplo do material, funciona como um indice de livro.
+Sem o index, a busca em um banco muito grande pode ser demara, pos a aplicação
+realiza uma vistoria linear em todos os dados da coleção.
+
+NOTA: Estou verificando, por hora, uma maneira de mostrar que essa consulta
+foi realizada por index, e não linearmente.
+'''
