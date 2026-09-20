@@ -49,6 +49,8 @@ principalmente na hora de realizar o pipeline.
 2. A conexão estava sendo fechada em todas as chamadas, parece mais inteligente fechar a conexão apóes todas as querys, ao invés de iniciar uma nova.
 ---
 ## Exercicio 5:
-1. Alice ta sendo extorquida, pois o `Rollback` não está sendo efetuado.
+1. Alice ta sendo extorquida, pois o `Rollback` não está sendo efetuado. As simulações de trânsferencias estão ocorrendo, porém, o vando não retorna erro por não encontrar o ID 99 na lista.
+2. Não consegui simular um rollback na aplicação. O banco não retorna nenhum erro, mesmo que o commite seja realizado ao final dos 4 UPDATEs, na sumilação das transações.
+=´(
 
 ---
