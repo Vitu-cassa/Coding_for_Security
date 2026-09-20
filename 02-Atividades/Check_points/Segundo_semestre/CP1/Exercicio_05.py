@@ -84,7 +84,7 @@ finally:
         cursor.execute(
             "UPDATE contas SET saldo = saldo + 200 WHERE id = 2"
         )
-        Trânsferencias de alice para ID desconhecido
+        # Trânsferencias de alice para ID desconhecido
         cursor.execute(
             "UPDATE contas SET saldo = saldo - 100 WHERE id = 1"
         )
@@ -93,7 +93,7 @@ finally:
         )
         conexao.commit()
 
-    except Exception as e:
+    except Error as e:
         conexao.rollback()
         print("Transferência não realizada: {}".format(e))
         print("Realizando RollBack...")
@@ -108,3 +108,5 @@ finally:
 
     if 'conexao' in locals() and conexao.is_connected():
         conexao.close()
+
+print("Favor, verificar o arquivo de duvidas... =(")
