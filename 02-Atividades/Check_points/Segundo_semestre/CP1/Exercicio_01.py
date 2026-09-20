@@ -80,8 +80,6 @@ finally:
          VALUES (%s, %s, %s, %s, %s)", ativos
          )
         conexao.commit()
-        if 'conexao' in locals() and conexao.is_connected():
-            conexao.close()
     except Error as e:
         print("Ativo não cadastrado: {}".format(e))
 
@@ -96,9 +94,6 @@ finally:
         for row in cursor.fetchall():
             print(f"[{row['status']}] {row['nome']} {row['ip']} {row['tipo']}")
         conexao.commit()
-
-        if 'conexao' in locals() and conexao.is_connected():
-            conexao.close()
     except Error as e:
         print("Consulta não realizada: {}".format(e))
 
@@ -106,7 +101,6 @@ finally:
     print("Atualizando servidores inativos...")
 
     try:
-
         print(conexao.is_connected())
         cursor.execute(
             "UPDATE ativos SET status = %s WHERE status = %s", ('ativo', 'inativo')
@@ -116,3 +110,6 @@ finally:
             conexao.close()
     except Error as e:
         print("Atualização não realizada: {}".format(e))
+
+    if 'conexao' in locals() and conexao.is_connected():
+        conexao.close()
