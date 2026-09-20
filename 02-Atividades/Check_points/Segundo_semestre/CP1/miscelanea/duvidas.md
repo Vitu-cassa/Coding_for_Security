@@ -66,3 +66,4 @@ principalmente na hora de realizar o pipeline.
 > A função retorna uma lista, com os eventos preenchidos. Utilizo esse retorno para a variavel `eventos`, para preenchimento da coleção.
 > Espero, sinceramente, que funcione bem...
 >
+2. 
