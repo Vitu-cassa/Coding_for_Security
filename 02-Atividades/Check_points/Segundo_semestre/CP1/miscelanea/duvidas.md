@@ -48,4 +48,7 @@ principalmente na hora de realizar o pipeline.
 >
 2. A conexão estava sendo fechada em todas as chamadas, parece mais inteligente fechar a conexão apóes todas as querys, ao invés de iniciar uma nova.
 ---
+## Exercicio 5:
+1. Alice ta sendo extorquida, pois o `Rollback` não está sendo efetuado.
 
+---
