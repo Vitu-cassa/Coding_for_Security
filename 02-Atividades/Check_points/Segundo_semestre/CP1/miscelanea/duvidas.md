@@ -33,3 +33,5 @@ Como declarar uma coleção específica?
 > ```python
 > filtro = {"ip": {"\(exists": True}, "tipo": {"\)exists": True}} # Sugerido pela IA para evitar buscas globais incompatíveis
 > ```
+2. Uma boa dificuldade em saber onde declarar o `$` durante algumas declarações ao mongo.
+principalmente na hora de realizar o pipeline.

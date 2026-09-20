@@ -57,10 +57,13 @@ print("Ordenando pipeline...")
 try:
     pipeline = [
         {"$match": {"tipo": "FAIL"}},
-        {"$group": {"_id": "ip", "total": {"$sum":1}}},
-        {"$sort": {"total": -1}}, {"limit": 3}
+        {"$group": {"_id": "$ip", "total": {"$sum":1}}},
+        {"$sort": {"total": -1}}, 
+        {"$limit": 3}
     ]
+    print("Top 3 IPs com mais falhas registradas:")
     for evento in eventosDb.aggregate(pipeline):
-        print("")
+        print("{0[_id]:<16} -> {0[total]} falhas".format(evento))
+
 except Exception as e:
     print("Erro ao rankear os IPs: {}".format(e))
