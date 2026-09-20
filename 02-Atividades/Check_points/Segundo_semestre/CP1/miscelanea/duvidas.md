@@ -35,3 +35,6 @@ Como declarar uma coleção específica?
 > ```
 2. Uma boa dificuldade em saber onde declarar o `$` durante algumas declarações ao mongo.
 principalmente na hora de realizar o pipeline.
+---
+## Exercicio 4:
+1. A tabela é criada, porém, inserir, pelo python, os usuarios da lista, está retornando um erro de sintaxe, mesmo que esteja semelhante ao `Exercicio_01.py`.
