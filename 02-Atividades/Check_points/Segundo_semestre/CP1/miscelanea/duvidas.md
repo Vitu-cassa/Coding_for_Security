@@ -70,4 +70,6 @@ principalmente na hora de realizar o pipeline.
 3. Por conta do exercicio 2, achei interessante realizar a limpeza de todas as coleções do exercicio. A funcção de limpeza foi adicionada mas não testei, porque no meio do caminho, achei interessante ter uma "sugeira" durante o exercicio. Testarei mais tarde.
 ---
 ## Exercicio 7:
-1. 
+1. Tem uma maneira de verificar qual o numero idela de arvores participam da decisão, futuramente pode ser interesante experimentar.
+2. Os dados devem ser poucos, indemendente da quantidade de arvores que coloquei, a acuracia não modificou, seria interessante experimentrar com uma amostra maior de dados.
+---
