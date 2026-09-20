@@ -73,3 +73,7 @@ principalmente na hora de realizar o pipeline.
 1. Tem uma maneira de verificar qual o numero idela de arvores participam da decisão, futuramente pode ser interesante experimentar.
 2. Os dados devem ser poucos, indemendente da quantidade de arvores que coloquei, a acuracia não modificou, seria interessante experimentrar com uma amostra maior de dados.
 ---
+## Exercicio 8:
+1. Na primeira tentativa tive uma saía contrária ao esperado, poderia inverter a condição do `if`, mas não me parece a abordagem mais correta. Verificar o que ta imprimindo em `r` pode ajudar. No fim das contas o `r` imprime o valor esperado, Acabei por inverter a logica do `if`, mesmo. =V
+2. Tal qual o Random Forest, do exercicio anterior, pode ser interessante, futuramente, explorar as classsificações com dados mais aleatórios e abundantes.
+---
