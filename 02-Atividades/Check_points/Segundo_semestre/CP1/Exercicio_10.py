@@ -151,21 +151,27 @@ print("Preparando o aprentizado de maquina...")
 try:
     # preparando o modelo de machine learning
     # formatando os dados
-    x = np.array(dataset_treino)
+    x = np.array(dataset_treino).reshape(-1, 1)
     y = np.array(rotulo)
-
+    print(x)
     # divisões de treino
     x_train, x_test, y_train, y_test = train_test_split(
-        x, y, test_size=0.3, random_state=42)
+         x, y, test_size=0.3, random_state=42)
 
     # importantdo modelo e passando parametros de treino
     avaliador = RandomForestClassifier(n_estimators=100, random_state=42)
     avaliador.fit(x_train, y_train)
 
     # Previsoes
-    # previsoes = avaliador.predict(x_test)
-    # print("\nAcurácia: {:.2f}".format(accuracy_score(y_test, previsoes)))
-    # print("{}".format(classification_report(y_test, previsoes)))
+    previsoes = avaliador.predict(x_test)
+    print("\nAcurácia: {:.2f}".format(accuracy_score(y_test, previsoes)))
+    print("{}".format(classification_report(y_test, previsoes)))
+
+    print("Teste novo caso com novo IP suspeito...")
+
+    caso_novo = np.array(8).reshape(-1,1)
+
+    print("IP Suspeito!" if avaliador.predict(caso_novo)[0] == 1 else "Normal")
 
 except Exception as e:
     print("Modelo falhou: {}".format(e))
