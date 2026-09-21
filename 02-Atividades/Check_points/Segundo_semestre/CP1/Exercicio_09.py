@@ -29,6 +29,16 @@ f1 = f1_score(y_true, y_pred)
 
 print("Matriz:\n{}".format(matriz))
 print("Acuracia{:>5.2f} | Precisao: {:>5.2f} |" \
-" Recall: {:>5.2f} | F1: {:>5.2f}".format(acuracia, presicao, recal, f1))
+" Recall: {:>5.2f} | F1: {:>5.2f}\n".format(acuracia, presicao, recal, f1))
+
+print(classification_report(y_true, y_pred))
+
+'''Comentarios sobre os dados do exemplo:
+        Se levarmos em conta apenas a acuracia, podemos acreditar que o modelo
+        teria apresentado 90% de aproveitamento.
+        porém, o recall mostra que, na verdade, um ataque passou, na amostra
+        fornacida, configura metade dos ataque.
+        Estes dados são importantes para refinar as previsões dos modelos. 
+'''
 
 
