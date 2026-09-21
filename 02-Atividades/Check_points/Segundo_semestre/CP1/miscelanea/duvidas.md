@@ -77,3 +77,15 @@ principalmente na hora de realizar o pipeline.
 1. Na primeira tentativa tive uma saía contrária ao esperado, poderia inverter a condição do `if`, mas não me parece a abordagem mais correta. Verificar o que ta imprimindo em `r` pode ajudar. No fim das contas o `r` imprime o valor esperado, Acabei por inverter a logica do `if`, mesmo. =V
 2. Tal qual o Random Forest, do exercicio anterior, pode ser interessante, futuramente, explorar as classsificações com dados mais aleatórios e abundantes.
 ---
+## Exercicio 0:
+1. No caso do exercicio, foram utilizados dois parâmetros predefinidos para a `matriz confusão`. No caso pratico, como poderíamos utilizar a matriz para verificar a qualidade da analise dos nossos modelos? Seria, no caso do programa `Exercicio_07.py`, a variável `previsoes`?
+> ```python
+> ...saida omitida...
+> # Previsões e avaliasões
+>   previsoes = modelo.predict(x_test)
+>   print("\nAcurácia: {:.2f}".format(accuracy_score(y_test, previsoes)))
+> ... saída omitida ...
+> ```
+2. 
+
+---
