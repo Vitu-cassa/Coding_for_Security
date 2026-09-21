@@ -10,7 +10,9 @@ Para garantir compatibilidade e legibilidade total na interface principal do Git
 
 | Prefixo | Código para o Terminal | Emoji no GitHub | Quando usar no dia a dia |
 | :--- | :--- | :---: | :--- |
-| `🆕 init:` | `:new: init:` | 🆕 | Começou um novo tópico de estudo ou arquivo do zero. |
+| `🎯 task:` | `:target: task:` | 🎯 | Iniciou uma nova tarefa, lista de exercícios ou meta de estudo. |
+| `🆕 init:` | `:new: init:` | 🆕 | Começou um arquivo de código principal do zero (ex: `Exercicio_06.py`). |
+| `📎 add:` | `:paperclip: add:` | 📎 | Adicionou um arquivo qualquer de suporte (dados, logs, imagens). |
 | `⚙️ wip:` | `:gear: wip:` | ⚙️ | Atividade em andamento (salvando o código no meio do processo). |
 | `🔨 part:` | `:hammer: part:` | 🔨 | Atividade incompleta / Feita apenas uma parte do exercício. |
 | `💡 todo:` | `:bulb: todo:` | 💡 | Identificou um ponto que pode ser melhorado ou otimizado depois. |
@@ -25,56 +27,77 @@ Para garantir compatibilidade e legibilidade total na interface principal do Git
 
 ---
 
-## ⚙️ Scripts de Automação (Git Aliases)
+## ⚙️ Configuração dos Atalhos (Git Aliases) no PowerShell
 
-Para evitar ter que digitar ou decorar os códigos de emojis toda vez, foram configurados **atalhos oficiais do Git (aliases)** que geram a estrutura da mensagem automaticamente.
+Como o Windows PowerShell possui regras estritas para aspas e caracteres de escape, a forma mais segura e à prova de falhas para configurar esses atalhos é editando o arquivo de configuração global do Git diretamente.
 
-### Comando Único de Configuração
-Execute o bloco de código abaixo no seu terminal (apenas uma vez) para habilitar todas as automações:
+### Passo a Passo para Instalação:
 
-```bash
-git config --global alias.init-study '!f() { git commit -m ":new: init: cria '\''"\$"'\''"; }; f' && \
-git config --global alias.wip '!f() { git commit -m ":gear: wip: '\''"\$"'\'' em andamento"; }; f' && \
-git config --global alias.part '!f() { git commit -m ":hammer: part: '\''"\$"'\'' incompleto"; }; f' && \
-git config --global alias.todo '!f() { git commit -m ":bulb: todo: '\''"\$"'\'' pode receber melhoria"; }; f' && \
-git config --global alias.rm-file '!f() { git commit -m ":wastebasket: remove: deleta '\''"\$"'\''"; }; f' && \
-git config --global alias.mv-file '!f() { git commit -m ":truck: move: move '\''"\$"'\''"; }; f' && \
-git config --global alias.docs '!f() { git commit -m ":memo: docs: atualiza '\''"\$"'\''"; }; f' && \
-git config --global alias.done '!f() { git commit -m ":white_check_mark: done: '\''"\$"'\'' finalizado"; }; f'
+1. Abra o terminal do **PowerShell** no VS Code e execute o comando abaixo:
+   ```powershell
+   git config --global --edit
+   ```
+2. Um arquivo de texto será aberto no seu editor padrão ou no Bloco de Notas.
+3. Vá até o final do arquivo, pule uma linha e cole o bloco de configuração abaixo:
+
+```ini
+[alias]
+	task = "!f() { git commit -m \":target: task: '\$1'\"; }; f"
+	init-study = "!f() { git commit -m \":new: init: cria '\$1'\"; }; f"
+	add-file = "!f() { git commit -m \":paperclip: add: adiciona '\$1'\"; }; f"
+	wip = "!f() { git commit -m \":gear: wip: '\$1' em andamento\"; }; f"
+	part = "!f() { git commit -m \":hammer: part: '\$1' incompleto\"; }; f"
+	todo = "!f() { git commit -m \":bulb: todo: '\$1' pode receber melhoria\"; }; f"
+	rm-file = "!f() { git commit -m \":wastebasket: remove: deleta '\$1'\"; }; f"
+	mv-file = "!f() { git commit -m \":truck: move: move '\$1'\"; }; f"
+	docs = "!f() { git commit -m \":memo: docs: atualiza '\$1'\"; }; f"
+	done = "!f() { git commit -m \":white_check_mark: done: '\$1' finalizado\"; }; f"
 ```
+4. Salve e feche o arquivo.
 
-### 🚀 Exemplos Práticos de Uso no Dia a Dia
+---
 
-Após a configuração, o fluxo de comandos simplificados no terminal passa a ser:
+## 🚀 Exemplos Práticos de Uso no PowerShell
 
-```bash
-# 1. Ao iniciar um novo script de exercício:
-git add Exercicio_05.py
-git init-study Exercicio_05.py
-# Mensagem gerada: 🆕 init: cria 'Exercicio_05.py'
+Após salvar as configurações, você pode gerenciar o fluxo de estudos executando comandos simples de uma palavra no PowerShell:
 
-# 2. Se precisar interromper o desenvolvimento na metade:
-git add Exercicio_05.py
-git wip Exercicio_05.py
-# Mensagem gerada: ⚙️ wip: 'Exercicio_05.py' em andamento
+```powershell
+# 1. Ao iniciar uma nova meta de estudos geral:
+git task "estudos de machine learning e redes neurais"
+# Mensagem no GitHub: 🎯 task: 'estudos de machine learning e redes neurais'
 
-# 3. Se o código ficou incompleto ou travado em uma parte:
-git add Exercicio_05.py
-git part Exercicio_05.py
-# Mensagem gerada: 🔨 part: 'Exercicio_05.py' incompleto
+# 2. Ao criar o arquivo script de um exercício específico:
+git add Exercicio_06.py
+git init-study Exercicio_06.py
+# Mensagem no GitHub: 🆕 init: cria 'Exercicio_06.py'
 
-# 4. Ao registrar ou revisar anotações teóricas:
+# 3. Ao anexar um arquivo qualquer que sirva de suporte:
+git add auth.log
+git add-file auth.log
+# Mensagem no GitHub: 📎 add: adiciona 'auth.log'
+
+# 4. Se precisar interromper o desenvolvimento na metade:
+git add Exercicio_06.py
+git wip Exercicio_06.py
+# Mensagem no GitHub: ⚙️ wip: 'Exercicio_06.py' em andamento
+
+# 5. Se o código ficou incompleto ou travado:
+git add Exercicio_06.py
+git part Exercicio_06.py
+# Mensagem no GitHub: 🔨 part: 'Exercicio_06.py' incompleto
+
+# 6. Ao registrar ou revisar anotações teóricas:
 git add duvidas.md
 git docs duvidas.md
-# Mensagem gerada: 📝 docs: atualiza 'duvidas.md'
+# Mensagem no GitHub: 📝 docs: atualiza 'duvidas.md'
 
-# 5. Ao mapear uma melhoria para o futuro:
-git add Exercicio_05.py
-git todo Exercicio_05.py
-# Mensagem gerada: 💡 todo: 'Exercicio_05.py' pode receber melhoria
+# 7. Ao mapear uma melhoria para o futuro:
+git add Exercicio_06.py
+git todo Exercicio_06.py
+# Mensagem no GitHub: 💡 todo: 'Exercicio_06.py' pode receber melhoria
 
-# 6. Ao finalizar e validar completamente o exercício:
-git add Exercicio_05.py
-git done Exercicio_05.py
-# Mensagem gerada: ✅ done: 'Exercicio_05.py' finalizado
+# 8. Ao finalizar e validar completamente o exercício:
+git add Exercicio_06.py
+git done Exercicio_06.py
+# Mensagem no GitHub: ✅ done: 'Exercicio_06.py' finalizado
 ```
