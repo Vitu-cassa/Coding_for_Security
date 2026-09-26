@@ -2,48 +2,22 @@
 
 ---
 ## Exercício 1:
+1. Esse primeiro aqui eu, sinceramente, não compreendi. Eu achei que teriam algumas estruturas de `if/elses`, mas o exercício pede para não ter estas condições soltas no código... Entendo o que ele deseja, mas não tô concebendo como realizar o diagnostico sem condicioais.
+Talvez ele queira dizer que as condições não devam ficar no programa principal...
+
+2. Qual a melhor forma de fomratar um dicionario ou lista, para ficar legivel no codigo?
+
+3. Eu ainda tenho muita dificildade com `tupplas` e `dicionários`. 
+
+4. Esse foi dose, demorei um tempão para estruturar. Mas apliquei aqui a maior parte de tradução pythonica possível. Estou voltando a tentar estruturar tudo em funções especificas. Adiconalmente, devo prestar mais atenção à formatações de saídas
+**Nota:**A partir daqui, considerando muito em vibe-codar T.T
+
+---
+
+## Exercicio 2:
 1. 
 
 ---
-
-## Exercício 2:
-1.
-
----
-## Exercício 3:
-1.
-
----
-## Exercício 4:
-1. 
----
-## Exercício 5:
-1. 
----
-## Exercício 6:
-1. 
-
----
-## Exercício 7:
-1.
----
-## Exercício 8:
-1.
-
----
-## Exercício 9:
-1.
-
----
-## Exercício 10 (Desafio):
-1.
----
-## Considerações
-
-
-
----
-
 # Apagar templates de formatação
 
 ## Saidas de terminal e trechos de codigo
