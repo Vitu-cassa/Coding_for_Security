@@ -1,1 +1,0 @@
-docker run -d --name mysql-lab -p 3306:3306 -e MYSQL_ROOT_PASSWORD=senha -e MYSQL_DATABASE=seguranca mysql:8
