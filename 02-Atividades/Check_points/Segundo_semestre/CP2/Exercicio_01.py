@@ -50,10 +50,13 @@ def _recomendar(perfis):
 
 def _avaliador(parametros):
     try:
-        avaliacao = {"sql": None,
-                     "cap": None,
-                     "owasp": None,
-                     "justificativa": None}
+        avaliacao = {
+            "sql": None,
+            "nosql": None,
+            "cap": None,
+            "owasp": None,
+            "justificativa": None
+        }
 
         schema = parametros["schema_fixo"]
         acid = parametros["precisa_acid"]
@@ -62,41 +65,45 @@ def _avaliador(parametros):
         dado_sensivel = parametros["dado_sensivel"]
 
         # Decide o banco
-        if acid or (dado_sensivel and schema and atraso_consistencia):
-            avaliacao["sql"] = True
-        else:
-            avaliacao["sql"] = False
+        avaliacao["sql"] = (True if acid or (dado_sensivel and schema and atraso_consistencia) else False)
+        avaliacao["nosql"] = (False if avaliacao["sql"] == True else True)
 
         # Avalia o CAP
-        if acid and schema and dado_sensivel:
-            avaliacao["cap"] = "CP"
+        avaliacao["cap"] = ("CP" if acid or dado_sensivel else "AP")
 
-        elif escala and atraso_consistencia:
-            avaliacao["cap"] = "AP"
 
-        else:
-            avaliacao["cap"] = "Verificar parametros."
+        # Avalia o OWASP considerando as escolhas erradas
+        avaliacao["owasp"] = (
+            "A04" if acid and not avaliacao["sql"] else
+            "A03" if schema and not avaliacao["sql"] else
+            "A02" if dado_sensivel and not avaliacao["sql"] else
+            "A05" if not avaliacao["nosql"] and escala else
+            "A01" if not avaliacao["nosql"] and atraso_consistencia else
+            "Verificar caso no OWASP."
+        )
 
-        elif 
+        # Justificativa
+        avaliacao["justificativa"] = (
+            "Sistema precisa de bloqueios refinados." if avaliacao["owasp"] == "A04" else
+            "Sistema exige rigidez nos dados, permitindo parametrização nas queries." if avaliacao["owasp"] == "A03" else
+            "Sistema exige segurança acima de velocidade." if avaliacao["owasp"] == "A02" else
+            "O sistema precisa de escalabilidade horizontal, sem abrir brechas na infra-estrutura." if avaliacao["owasp"] == "A05" else
+            "A sincronia entre os sitemas deve ser garantida." if avaliacao["owasp"] == "A01" else
+            "Verificar caso especifico!"
+        )
         return avaliacao
     
     except Exception as e:
         print("Erro nos dados: {}".format(e))
 
 def _formatador(perfil, avaliacao):
-    sql = avaliacao["sql"]
 
-    if sql:
-        banco = "MySQL"
-    elif not sql:
-        banco = "MongDb"
-    else:
-        banco = "Pesquisar banco e adicionar aos dados"
-    print("{} -> {}".format(perfil, banco))
+    banco = ("MySql" if avaliacao["sql"] else "MongoDB")
+
+# credenciais_do_SOC     -> MySQL   | CP | "autenticar errado é pior que ficar fora do ar" | A07
+    print("{:<25} -> {:<8} | {:^4} | {:<85} | {:^5} ".format(perfil, banco, avaliacao["cap"], avaliacao["justificativa"], avaliacao["owasp"]))
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# Area dev
-
 try:
     _recomendar(perfis)
 except Exception as e:
