@@ -27,7 +27,11 @@ Talvez ele queira dizer que as condições não devam ficar no programa principa
 
 3. Não consegui transformar a conexão ao banco em uma função... =|
 
+4. Acho que as contagens dos alertas para comparação nao foram feitas da firma mais sofisticada.
 
+5. No meio do caminho, quando fui interagir com o `MongoDB`, acabei não adotando as formas de funções especificas. O codigo poderia ser refatorado com essa funcionabilidade. Além disso, a contagem, principalmente no `mongoDB` pode ser refeita, para um valor mais confiável.
+
+6. Continuo sem entender a relação da instrução `.fetchall()`, por hora, só aceito que ela esteja funcionando.
 
 ---
 # Apagar templates de formatação
