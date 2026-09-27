@@ -98,6 +98,8 @@ def _inserirDadosMysql():
 def _realizadorJoin():
     cursor = conexao.cursor(dictionary=True)
     dados_mongo = []
+    contador_sql = 0
+
     try:
         cursor.execute("""
             SELECT 
@@ -118,12 +120,8 @@ def _realizadorJoin():
         """)
         for linha in cursor.fetchall():
             dados_mongo.append(linha)
+            contador_sql += 1
         
-        contador_sql = cursor.execute("""
-            SELECT severidade, COUNT(*) AS total,
-            FROM alertas,
-            GROUP BY severidade
-        """)
         return dados_mongo, contador_sql
     except Exception as e:
         print("JOIN não executado: {}".format(e))
@@ -146,7 +144,6 @@ finally:
     _criaTabelaSQL()
     _inserirDadosMysql()
     dados_mongo, contador_sql = _realizadorJoin()
-    print("Contagem SQL = {}".format(contador_sql))
 
     if 'conexao' in locals() and conexao.is_connected():
         conexao.close()
@@ -185,3 +182,22 @@ try:
 except Exception as e:
     print("Falha na inserção: {}".format(e))
 
+# indexação para contagem
+print("Indexando...")
+try:
+    logs_db.create_index("alertas")
+except Exception as e:
+    print("Indexação falhou: {}".format(e))
+
+# Realiza contagem de alertas catalogados
+try:
+    contador_mongo = 0
+    pipeline = [
+        {"$group": {"_id": "$alertas", "total":{"$sum": 1}}},
+        ]
+    for log in logs_db.aggregate(pipeline):
+        contador_mongo = log["total"]
+except Exception as e:
+    print("Falha na contagem de eventos: {}".format(e))
+
+print("MySQL: {:<5} | Mongo: {:<5}".format(contador_sql, contador_mongo))
