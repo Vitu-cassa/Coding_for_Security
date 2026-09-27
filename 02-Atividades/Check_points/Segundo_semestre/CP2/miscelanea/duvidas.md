@@ -9,13 +9,25 @@ Talvez ele queira dizer que as condições não devam ficar no programa principa
 
 3. Eu ainda tenho muita dificildade com `tupplas` e `dicionários`. 
 
-4. Esse foi dose, demorei um tempão para estruturar. Mas apliquei aqui a maior parte de tradução pythonica possível. Estou voltando a tentar estruturar tudo em funções especificas. Adiconalmente, devo prestar mais atenção à formatações de saídas
-**Nota:**A partir daqui, considerando muito em vibe-codar T.T
+4. Esse foi dose, demorei um tempão para estruturar. Mas apliquei aqui a maior parte de tradução pythonica possível. Estou voltando a tentar estruturar tudo em funções especificas. Adiconalmente, devo prestar mais atenção à formatações de saídas.
+
+**Nota:** A partir daqui, considerando muito em vibe-codar T.T
 
 ---
 
 ## Exercicio 2:
-1. 
+1. Para criar as novas tabelas, tive que garantir que as antigas fossem removidas. Para estes processos, descobri que o `.executemany()` não serve para criar ou deletar tabelas. pode ser interessante ter um `for` para mais de duas tabelas, na proxima;
+> ```python
+> tabelas_para_deletar = ['ativos', 'alertas', 'usuarios']
+> for tabela in tabelas_para_deletar:
+>    cursor.execute("DROP TABLE IF EXISTIS {}".format(tabela))
+>```
+
+2. Lidar com as chaves foi dificil. Para deletar uma tabela com `DROP`, deve-se apagar todas as tabelas que herdam caracteristicas antes da tabela "mãe", quanto para o `CREATE`, gera-se a tabela "mãe" primeiro, o que faz bastante sentido.
+
+3. Não consegui transformar a conexão ao banco em uma função... =|
+
+
 
 ---
 # Apagar templates de formatação
