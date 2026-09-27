@@ -36,21 +36,22 @@ from pymongo import MongoClient
 from pymongo.errors import PyMongoError # Tentei usar isso mas não gostei
 from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
+import time
 
 def _criaTabelaSQL():
     '''
     cria as tabelas para exercicio
         MySQL (crie):
         ativos(id PK, nome, ip UNIQUE, criticidade ENUM('baixa','media','alta'))
-
     '''
     # Cria tabela
     try:
         print("Demolindo tabelas antigas...")
-        cursor.execute("DROP TABLE IF EXISTS ativos")
-        cursor.execute("DROP TABLE IF EXISTS alertas")
-        conexao.commit()
 
+        cursor.execute("DROP TABLE IF EXISTS alertas")
+        cursor.execute("DROP TABLE IF EXISTS ativos")
+        conexao.commit()
+        time.sleep(3)
         print("Criando Tabelas novas")
         cursor.execute("""
             CREATE TABLE ativos(
@@ -68,14 +69,67 @@ def _criaTabelaSQL():
                     ativo_id INT,
                     FOREIGN KEY (ativo_id) REFERENCES ativos(id),
                     tipo VARCHAR(20),
-                    Severidade VARCHAR(20),
+                    severidade VARCHAR(20),
                     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                     )
         """)
 
     except Error as e:
         print("Tabela não criada: {}".format(e))
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+def _inserirDadosMysql():
+
+    print("Preenchendo tabelas MySQL...")
+    try:
+        cursor.executemany(
+            "INSERT INTO ativos (id, nome, ip, criticidade) \
+            VALUES (%s, %s, %s, %s)", ativos
+         )
+        conexao.commit()
+        
+        cursor.executemany(
+            "INSERT INTO alertas (id, ativo_id, tipo, severidade) \
+            VALUES (%s, %s, %s, %s)", alertas
+         )
+        conexao.commit()
+    except Error as e:
+        print("Dados não cadastrado: {}".format(e))
+
+def _realizadorJoin():
+    cursor = conexao.cursor(dictionary=True)
+    dados_mongo = []
+    try:
+        cursor.execute("""
+            SELECT 
+                ativos.id AS ativo_id,
+                ativos.nome,
+                ativos.ip,
+                ativos.criticidade,
+                ativos.criado_em AS ativo_criado_em,
+                
+                alertas.id AS alerta_id,
+                alertas.tipo,
+                alertas.severidade,
+                alertas.criado_em AS alerta_criado_em
+                
+            FROM ativos
+            JOIN alertas 
+                ON ativos.id = alertas.ativo_id;
+        """)
+        for linha in cursor.fetchall():
+            dados_mongo.append(linha)
+        
+        contador_sql = cursor.execute("""
+            SELECT severidade, COUNT(*) AS total,
+            FROM alertas,
+            GROUP BY severidade
+        """)
+        return dados_mongo, contador_sql
+    except Exception as e:
+        print("JOIN não executado: {}".format(e))
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 try:
     conexao = mysql.connector.connect(
         host="localhost", user="root",
@@ -88,4 +142,46 @@ except Error as e:
 
 finally:
     cursor = conexao.cursor()
+
     _criaTabelaSQL()
+    _inserirDadosMysql()
+    dados_mongo, contador_sql = _realizadorJoin()
+    print("Contagem SQL = {}".format(contador_sql))
+
+    if 'conexao' in locals() and conexao.is_connected():
+        conexao.close()
+
+# MONGO
+apagar = input("Quer remover coleções anteriores? [S]im/[N]ão ")
+
+# configurando conexão
+client = MongoClient("mongodb://localhost:27017/")
+db = client["seguranca"]
+logs_db = db["logs"]
+
+print(client.admin.command("ping"))
+print("Conectado ao Mongo!")
+
+if apagar == "S":
+    # Limpando coleções antigas no banco
+    print("Limpando todas as coleções antigas...")
+    try:
+        # Busca a lista com o nome de todas as coleções ativas no banco
+        for nome_colecao in db.list_collection_names():
+            # Exclui a coleção inteira
+            db[nome_colecao].drop()
+            print(f"Coleção '{nome_colecao}' removida com sucesso.")
+            
+        print("Banco de dados resetado com sucesso!")
+
+    except Exception as e:
+        print(f"Erro ao limpar o banco: {e}")
+
+# Adicionando logs à coleção
+print("Inserindo novos eventos...")
+try:
+    logs_db.insert_many(dados_mongo)
+    print("{} novos logs catalogados.".format(logs_db.count_documents({})))
+except Exception as e:
+    print("Falha na inserção: {}".format(e))
+
