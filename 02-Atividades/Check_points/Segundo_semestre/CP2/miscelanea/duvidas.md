@@ -75,8 +75,28 @@ curl -X DELETE -H "X-API-Key: key-bruno-002" http://localhost:5000/api/incidente
 # Ana (Nível 5) deletando o incidente 2 do Bruno (Espera 200 OK)
 curl -X DELETE -H "X-API-Key: key-ana-001" http://localhost:5000/api/incidentes/2
 ```
+---
+## Exercicio 7:
+vibe codado
 
-
+Testes do lab:
+> Rode o script Python no terminal do VS Code e abra o navegador.
+> 
+> Acesse http://localhost:5000/dashboard:
+> Clique com o botão direito do mouse, vá em "Inspecionar Elemento" e olhe a imagem. Você verá que o Jinja2 transformou o > ataque de atributos nisto:
+> alt="x&quot; onerror=&quot;alert('xss2 - quebra de atributo')"
+> O navegador lê as aspas como mero texto inofensivo.
+> 
+> Acesse http://localhost:5000/dashboard-inseguro:
+> Aqui você verá o painel quebrado (talvez os tamanhos mudem, as tabelas fiquem tortas). Inspecionando o código, verá:
+> alt="x" onerror="alert('xss2 - quebra de atributo')"
+> O atributo alt fechou e o evento onerror foi acoplado à imagem com sucesso (Injeção confirmada).
+> 
+> O Golpe de Misericórdia (Abra a aba "Console" (F12)):
+> Você não viu pop-ups saltando, certo? O navegador dirá em letras vermelhas gigantes:
+> Refused to execute inline script because it violates the following Content Security Policy directive: "default-src 'self'".
+> A sua arquitetura de Defesa em Profundidade funcionou!
+> 
 
 ---
 
