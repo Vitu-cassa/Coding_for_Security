@@ -103,3 +103,19 @@ Testes do lab:
 ## Exercicio 8:
 vibe codado
 
+programa quebra, precisa revisar os parametros de treino de ML.
+
+---
+
+## Exercicio 9:
+
+vibe codado
+
+---
+
+# Considerações
+
+Não me orgulho de ter entregue atrasado, nem mesmo por ter delegado metade das entregas para IA fazer.
+o menos, como quero treinair refatoração ded codigos (iniciei ate a leitura do livro sobre isso), acho que tenho um material interessante para verificar.
+Por fim, ao menos um destes exercicios vibes pretendo fazer na mão, pra consoliodar so conceitos de uma criação de uma API, interações com banco, e como vulnerabilidades podem aparecer. 
+dessa vez, é o que tem pra hoje...
