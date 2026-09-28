@@ -61,6 +61,25 @@ Vibe codado
 
 ---
 
+## Exercicio 6:
+Vibe codado
+
+testes no novo terminal:
+```powershell
+# Bruno tentando roubar o incidente 1 da Ana (Espera 403 Genérico)
+curl -H "X-API-Key: key-bruno-002" http://localhost:5000/api/incidentes/1
+
+# Bruno tentando deletar o incidente 1 da Ana (Espera 403 - Nível insuficiente)
+curl -X DELETE -H "X-API-Key: key-bruno-002" http://localhost:5000/api/incidentes/1
+
+# Ana (Nível 5) deletando o incidente 2 do Bruno (Espera 200 OK)
+curl -X DELETE -H "X-API-Key: key-ana-001" http://localhost:5000/api/incidentes/2
+```
+
+
+
+---
+
 # Apagar templates de formatação
 
 ## Saidas de terminal e trechos de codigo
