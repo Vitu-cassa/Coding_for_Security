@@ -51,6 +51,15 @@ Talvez ele queira dizer que as condições não devam ficar no programa principa
 **NOTA** Bastatne cois legal recebi da IA, manter em mente alguns dos truques.
 
 ---
+## Exercicio 4: 
+Feito em colaboração com Matheus.
+
+---
+
+## Exercicio 5:
+Vibe codado
+
+---
 
 # Apagar templates de formatação
 
